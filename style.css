@@ -1,0 +1,83 @@
+/* Random Hex Generator Styles */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.colour-picker-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+.colour-picker button {
+    background: none;
+    font-family: helvetica;
+    font-size: max(1vw, 20px);
+    font-weight: 800;
+    cursor: pointer;
+}
+.colour-container {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    transition: all .25s;
+    box-shadow: 0 5px 20px 5px #0002;
+}
+.colour-container textarea {
+    color: #fff;
+    font-family: helvetica;
+    font-size: max(1.2vw, 40px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0;
+    background: none;
+    border: none;
+    padding: 0;
+    overflow: hidden;
+    resize: none;
+    height: 45px;
+    width: 200px;
+    pointer-events: none;
+    outline: none;
+}
+.rgb-value-container textarea {
+    width: 400px;
+    height: 50px;
+}
+.colour-container textarea:focus {
+    border: none;
+    outline: none;
+}
+.colour-container textarea::selection {
+    background-color: transparent;
+}
+.colour-container .clipboard-text {
+    background: #0005;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    color: #fff;
+    position: absolute;
+    padding: 5px 10px;
+    bottom: 0;
+    left: 50%;
+    height: max-content;
+    width: max-content;
+    transform: translatex(-50%);
+    transition: all .25s;
+    z-index: -1;
+}
+.colour-container .clipboard-text p {
+    margin: auto;
+    text-align: center;
+    width: max-content;
+    font-family: 'helvetica';
+    font-weight: 800;
+}

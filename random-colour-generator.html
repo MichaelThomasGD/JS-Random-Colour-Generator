@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Random Hex Generator</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div class="colour-picker-container">
+            <div class="colour-picker">
+                <button onclick="pickColour()">Pick Colour</button>
+            </div>
+            <div style="background: #808080;" class="colour-container hex-value-container" onclick="copyColour('hex')">
+                <textarea id="hex" readonly>Hex...</textarea>
+                <div data-name="hex" class="clipboard-text">
+                    <p>Copied to clipboard</p>
+                </div>
+            </div>
+            <div style="background: #808080;" class="colour-container rgb-value-container" onclick="copyColour('rgb')">
+                <textarea id="rgb" readonly>RGB...</textarea>
+                <div data-name="rgb" class="clipboard-text">
+                    <p>Copied to clipboard</p>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            const pickColour = () => {
+
+                // Hex variables
+                const hexContainer = document.querySelector('.hex-value-container textarea');
+                const colourValues = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
+                let hex = [];
+                
+                // Loop through array to pick random value
+                for(let i = 0; i < 6; i++) {
+                    hex.push(colourValues[Math.floor(Math.random() * colourValues.length)]);
+                }
+
+                // Join new array together
+                hex = '#' + hex.join('');
+
+                // Display generated hexcode to screen 
+                hexContainer.innerHTML = hex;
+                hexContainer.parentElement.style.background = hex;
+
+                // Get RGB value generated
+                const rgbContainer = document.querySelector('.rgb-value-container textarea');
+                let rgb            = hexContainer.parentElement.style.backgroundColor;
+
+                // Display RGB value to screen
+                rgbContainer.innerHTML = rgb;
+                rgbContainer.parentElement.style.background = rgb;
+                
+            }
+
+            // Copy hexcode to clipboard
+            const copyColour = (colourId) => {
+                const content    = document.getElementById(colourId);
+                const copiedText = document.querySelector('[data-name=' + CSS.escape(colourId) + ']');
+
+                // Copy to clipboard
+                content.select();
+                document.execCommand('copy');
+
+                // Apply transition on text
+                copiedText.style.bottom = '100%';
+                setTimeout(() => {
+                    copiedText.style.bottom = '0';
+                }, 1000);
+            }
+
+        </script>
+    </body>
+</html>
